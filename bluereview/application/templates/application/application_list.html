@@ -1,0 +1,16 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Application List</h1>
+  {% if application_list %}
+  <ul>
+    {% for app in application_list %}
+      <li>
+        <a href="{{ app.get_absolute_url }}">{{ app.name }}</a> - {{ app.project_name }} - {{ app.id }}
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>There are no applications in the database.</p>
+  {% endif %}       
+{% endblock %}
