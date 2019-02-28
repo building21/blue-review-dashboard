@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 # Create your models here.
 
@@ -225,10 +226,10 @@ class Application(models.Model):
 	name = models.CharField(max_length=256)
 	faculty = models.CharField(max_length=35, choices=FACULTY_CHOICES)
 	other_faculty = models.CharField(max_length=100, blank=True)
-	project_name = models.CharField(max_length=512)
-	idea = models.TextField(max_length=200)
-	fit_for_blue = models.TextField(max_length=200)
-	media_link = models.CharField(max_length=256)
+	project_name = models.CharField(max_length=1024)
+	idea = models.TextField()
+	fit_for_blue = models.TextField()
+	media_link = models.CharField(max_length=1024)
 	country = models.CharField(max_length=128, choices=COUNTRY_CHOICES)
 	year = models.CharField(max_length=50)
 	valid = models.BooleanField()
@@ -240,7 +241,7 @@ class Application(models.Model):
 	# Functions
 	def get_absolute_url(self):
 		"""Returns the url to access a particular instance of the model."""
-		return reverse('model-detail-view', args=[str(self.id)])
+		return reverse('application-detail', args=[str(self.id)])
 
 	def __str__(self):
 		return "[Application: %s]" % (self.name)

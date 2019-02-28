@@ -1,0 +1,19 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+  <p><strong>name</strong> {{ application.name }}</p>
+  <p><strong>email</strong> {{ application.email }}</p>
+  <p><strong>faculty</strong> {{ application.faculty }}</p>
+  <p><strong>other_faculty</strong> {{ application.other_faculty }}</p>
+  <p><strong>date_commitment</strong> {{ application.date_commitment }}</p>
+
+  <p><strong>project_name</strong> {{ application.project_name }}</p>
+  <p><strong>idea</strong> {{ application.idea }}</p>
+  <p><strong>fit_for_blue</strong> {{ application.fit_for_blue }}</p>
+  <p><strong>media_link</strong> {{ application.media_link }}</p>
+  <p><strong>country</strong> {{ application.country }}</p>
+  <p><strong>year</strong> {{ application.year }}</p>
+  <p><strong>valid</strong> {{ application.valid }}</p>
+
+{% endblock %}
