@@ -237,6 +237,7 @@ class Application(models.Model):
 	# Metadata
 	class Meta(object):
 		ordering = ['id']
+		permissions = (("can_upload", "Upload Application so the Database"),)
 
 	# Functions
 	def get_absolute_url(self):
