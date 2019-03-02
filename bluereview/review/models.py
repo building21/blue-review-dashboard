@@ -17,6 +17,7 @@ class Review(models.Model):
 	# Metadata
 	class Meta(object):
 		ordering = ['id']
+		permissions = (('can_upload', "Upload reviews to the platform"),)
 
 	# Functions
 	def get_absolute_url(self):
