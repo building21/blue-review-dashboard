@@ -1,0 +1,14 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+	
+	{% if confirmation %}
+	<p>{{ confirmation }}</p>
+	{% else %}
+	<form action="{% url 'review-upload' %}" method="post">
+		{% csrf_token %}
+		{{ form }}
+		<input type="submit" value="Submit">
+	</form>
+	{% endif %}
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <h1>Review List</h1>
+  {% if review_list %}
+  <ul>
+    {% for review in review_list %}
+
+      {% for app in review.apps %}
+        <a href="{{ app.get_absolute_url }}">{{ app.name }}</a>
+      {% endfor %}
+      <li>
+        <a href="{{ app.get_absolute_url }}">{{ app.name }}</a> - {{ app.project_name }} - {{ app.id }}
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>There are no reviews in the database.</p>
+  {% endif %}       
+{% endblock %}
