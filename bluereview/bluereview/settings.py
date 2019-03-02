@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'application',
     'review',
     'bootstrap4',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
@@ -117,6 +118,7 @@ EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
 EMAIL_PORT = config('EMAIL_PORT')
 EMAIL_USE_TLS = config('EMAIL_USE_TLS')
 EMAIL_USE_SSL = config('EMAIL_USE_SSL')
+DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL')
 # NOTE(Richard): Cannot both be True
 assert(not ((EMAIL_USE_TLS == True) and (EMAIL_USE_SSL == True)))
 

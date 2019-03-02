@@ -28,10 +28,15 @@
         <ul class="sidebar-nav">
           <li><a href="{% url 'application-index' %}">Application Home</a></li>
           <li><a href="{% url 'application-list' %}">Application Listing</a></li>
-          <li><a href="{% url 'review_index' %}">Review Home</a></li>
-          <li><a href="{% url 'review_index' %}">Review Home</a></li>
+          <li><a href="{% url 'review-index' %}">Review Home</a></li>
+        </ul>
+
+        <ul class="sidebar-nav">
           {% if perms.application.can_upload %}
           <li><a href="{% url 'application-upload' %}">Application Upload</a></li>
+          {% endif %}
+          {% if perms.review.can_view_list %}
+          <li><a href="{% url 'review-list' %}">Review Listing</a></li>
           {% endif %}
         </ul>
 
