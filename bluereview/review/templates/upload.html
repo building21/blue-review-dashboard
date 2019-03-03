@@ -13,9 +13,17 @@
 {% block content %}
 	
 	{% if confirmation %}
-	<p>{{ confirmation }}</p>
+		{% if error %}
+			<div class="alert alert-danger" role="alert">
+				<p>{{ confirmation }}</p>
+			</div> 
+		{% else %}
+			<div class="alert alert-success" role="alert">
+				<p>{{ confirmation }}</p>
+			</div>
+		{% endif %}
 	{% else %}
-	<form action="{% url 'review-upload' %}" method="post" class="form">
+	<form action="{% url 'review-upload' %}" method="post" class="form" enctype="multipart/form-data">
 	  {% csrf_token %}
 	  {% bootstrap_form form %}
 	  {% buttons %}
