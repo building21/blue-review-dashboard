@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+from decouple import config
+# note: config file defined at root of git repo in '.env'
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -20,7 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'jrf!hjke@hq54oehmtr!55b_c)x+&%=_)q2&kjztbn*05^@om1'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -40,6 +42,7 @@ INSTALLED_APPS = [
     'application',
     'review',
     'bootstrap4',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
@@ -104,6 +107,17 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+LOGIN_REDIRECT_URL = '/application/'
+
+LOGIN_URL = '/login/'
+
+# Password Reset email setup
+EMAIL_HOST = config('EMAIL_HOST')
+EMAIL_HOST_USER = config('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+EMAIL_PORT = config('EMAIL_PORT')
+EMAIL_USE_TLS = config('EMAIL_USE_TLS')
+DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL')
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/

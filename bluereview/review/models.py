@@ -9,14 +9,19 @@ class Review(models.Model):
 	# app_b = models.ForeignKey('application.Application', on_delete=models.PROTECT)
 	winner = models.BooleanField(blank=True)
 	user = models.ForeignKey(get_user_model(), on_delete=models.PROTECT, blank=True, null=True)
-	time = models.DateTimeField()
-	in_prog = models.BooleanField()
-	completed = models.BooleanField()
+	time = models.DateTimeField(blank=True, null=True)
+	in_prog = models.BooleanField(blank=True)
+	completed = models.BooleanField(blank=True)
 
 
 	# Metadata
 	class Meta(object):
 		ordering = ['id']
+		permissions = (
+			('can_upload', "Can upload reviews to the database"),
+			('can_review', "Can submit review decisions"),
+			('can_view_list', "Can view list of reviews"),
+			)
 
 	# Functions
 	def get_absolute_url(self):
