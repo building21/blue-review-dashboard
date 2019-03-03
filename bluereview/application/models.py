@@ -233,6 +233,8 @@ class Application(models.Model):
 	country = models.CharField(max_length=128, choices=COUNTRY_CHOICES)
 	year = models.CharField(max_length=50)
 	valid = models.BooleanField()
+
+        applications = ApplicationManager()
 		
 	# Metadata
 	class Meta(object):
@@ -246,3 +248,6 @@ class Application(models.Model):
 
 	def __str__(self):
 		return "[Application: %s]" % (self.name)
+
+        def clean(self):
+            pass

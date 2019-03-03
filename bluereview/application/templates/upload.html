@@ -1,0 +1,29 @@
+{% extends "base_generic.html" %}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+
+{% block content %}
+	
+	{% if confirmation %}
+		{% if error %}
+			<div class="alert alert-danger" role="alert">
+				<p>{{ confirmation }}</p>
+			</div> 
+		{% else %}
+			<div class="alert alert-success" role="alert">
+				<p>{{ confirmation }}</p>
+			</div>
+		{% endif %}
+	{% else %}
+	<form action="{% url 'application-upload' %}" method="post" class="form" enctype="multipart/form-data">
+	  {% csrf_token %}
+	  {% bootstrap_form form %}
+	  {% buttons %}
+	    <button type="submit" class="btn btn-primary">
+	      Submit
+	    </button>
+	  {% endbuttons %}
+	</form>
+	{% endif %}
+{% endblock %}
