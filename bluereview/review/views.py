@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required, permission_required
 
 from review.models import Review
 from review.helper import handle_review_csv
-from review.forms import ReviewUpoadForm
+from review.forms import ReviewUploadForm
 
 # Create your views here.
 
@@ -17,21 +17,23 @@ def index(request):
 @permission_required('review.can_upload')
 def upload_reviews(request):
 	if request.method == 'POST':
-		form = ReviewUpoadForm(request.POST)
+		form = ReviewUploadForm(request.POST, request.FILES)
 		if form.is_valid():
-			confirmation = handle_review_csv(form.cleaned_data['csv'])
+			error, confirmation = handle_review_csv(form.cleaned_data['csv'])
 		else:
-			confirmation = "Error in your form"
+			error = True
 	else:
-		form = ReviewUpoadForm 
+		form = ReviewUploadForm 
 		confirmation = None
+		error = False
 
 	context = {
 		'form': form,
+		'error': error,
 		'confirmation': confirmation
 	}
 
-	return render(request, 'upload.html', {'form': form})
+	return render(request, 'upload.html', context=context)
 
 class ReviewListView(PermissionRequiredMixin, generic.ListView):
 	model = Review
