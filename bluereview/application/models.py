@@ -221,7 +221,7 @@ class Application(models.Model):
 		('Zimbabwe', 'Zimbabwe')
 		)
 
-	email = models.EmailField()
+	email = models.EmailField(unique=True)
 	date_commitment = models.BooleanField()
 	name = models.CharField(max_length=256)
 	faculty = models.CharField(max_length=35, choices=FACULTY_CHOICES)
@@ -247,5 +247,5 @@ class Application(models.Model):
 	def __str__(self):
 		return "[Application: %s]" % (self.name)
 
-        def clean(self):
-            pass
+	def clean(self):
+		pass
