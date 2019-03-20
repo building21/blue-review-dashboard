@@ -1,6 +1,14 @@
 {% extends "base_generic.html" %}
 
+{# Load the tag library #}
 {% load bootstrap4 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
 
 {% block content %}
 	
@@ -15,7 +23,7 @@
 			</div>
 		{% endif %}
 	{% else %}
-	<form action="{% url 'review-upload' %}" method="post" class="form" enctype="multipart/form-data">
+	<form action="{% url 'application-upload' %}" method="post" class="form" enctype="multipart/form-data">
 	  {% csrf_token %}
 	  {% bootstrap_form form %}
 	  {% buttons %}

@@ -13,7 +13,6 @@ class Review(models.Model):
 	in_prog = models.BooleanField(blank=True)
 	completed = models.BooleanField(blank=True)
 
-
 	# Metadata
 	class Meta(object):
 		ordering = ['id']
